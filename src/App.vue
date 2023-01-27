@@ -1,0 +1,82 @@
+<template>
+  <div>
+    <header class="header">
+      <div class="nav-bar container">
+        <div>
+          <p class="test__class">K<span>i</span>no<span>LoVe</span>.ru</p>
+        </div>
+        <nav class="menu">
+          <router-link class="router menu__router" to="/">Главная</router-link>
+          <router-link class="router menu__router" to="/genre">Жанры</router-link>
+          <router-link class="router menu__router" to="/">Избранные</router-link>
+        </nav>
+        <div class="test__class">
+          <input type="text" placeholder="Поиск">
+        </div>
+      </div>
+    </header>
+    <router-view />
+  </div>
+</template>
+
+<script>
+  export default {
+  }
+</script>
+
+<style scoped>
+.header {
+  display: flex;
+}
+
+input {
+  width: 150px;
+  border-radius: 5px;
+  border: none;
+  height: 24px;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.nav-bar span {
+  color: red;
+}
+
+.test__class {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.header {
+  background-color: rgb(34 34 34 / 80%);
+  box-shadow: 0 0 50px 0 rgb(0 0 0 / 50%);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+}
+
+.menu a {
+  color: rgb(182, 182, 182);
+  
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: rgb(238, 238, 238);
+}
+
+.menu__router:not(:nth-child(1)){
+  margin-left: 20px;
+}
+</style>

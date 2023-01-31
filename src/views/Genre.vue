@@ -25,37 +25,42 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
+import {mapState, mapMutations, mapGetters} from 'vuex';
 import MovieCard from '../components/movieMap/MovieCard.vue';
 import BtnFilter from '../components/UI/BtnFilter.vue';
-import SelectV from '../components/UI/SelectV.vue';
     export default {
-  components: { MovieCard, BtnFilter, SelectV },
+  components: { MovieCard, BtnFilter },
         data(){
             return {
                 page: +this.$route.query.page || 1,
-                gen:  `/genre/adventure/?page=${this.page}`,
+                genre: [],
                 pageSize: 8,
+            }
+        },
+        watch: {
+            $route (to) {
+                this.genre.push(to.path.split('/')[2])
             }
         },
         methods: {
             ...mapMutations([
-                'POST_ADD_POST_PLAGINATE',
                 'POST_GENRE_FILMS',
                 'CHECKBOX',
+            ]),
+            ...mapGetters([
                 'SORT_TEST'
             ]),
             pageNumber(ar){
                 this.page = ar;
-            },
+            }
         },
         computed: {
             ...mapState([
                 'post',
                 'postPlaginate',
-                'genre',
-                'checkbox'
+                'checkbox',
             ]),
+            
             messege:{
                 get(){
                     return this.checkbox
@@ -64,37 +69,18 @@ import SelectV from '../components/UI/SelectV.vue';
                     return this.CHECKBOX(value)
                 }
             },      
-            test(array){
-                function randomSort(){
-                    return Math.random() - 0.5;
+            clickCallback(){  
+                let a = []
+                this.POST_GENRE_FILMS()
+                for(let i = 0; i <  this.SORT_TEST().length; i += this.pageSize) {
+                    const chunk =  this.SORT_TEST().slice(i, i + this.pageSize);
+                    a.push(chunk)
                 }
-                array.sort(randomSort)
+                this.$router.push(`?page=${this.page}`);
+                return a[this.page - 1];
             },
-            clickCallback(){
-                    if(this.postPlaginate.length > 0){
-                        let a = []
-                        this.SORT_TEST(this.postPlaginate) 
-                        for(let i = 0; i <  this.postPlaginate.length; i += this.pageSize) {
-                            const chunk =  this.postPlaginate.slice(i, i + this.pageSize);
-                            a.push(chunk)
-                        }
-                        this.$router.push(`/genre/${this.genre}?page=${this.page}`);
-                        return a[this.page - 1];
-                    } else {
-                        this.SORT_TEST(this.post)
-                        const   start = (this.page * this.pageSize) - this.pageSize,
-                                end = start + this.pageSize;       
-                        this.$router.push(`/genre/?page=${this.page}`);
-                        return this.post.slice(start, end);
-                    }
-                    
-            },
-            pageCount(){
-                if(this.postPlaginate.length > 0){
-                    return Math.ceil(this.postPlaginate.length / this.pageSize);
-                }  else {
-                    return Math.ceil(this.post.length / this.pageSize);
-                }
+            pageCount(){   
+                return Math.ceil(this.postPlaginate.length / this.pageSize);
             }
         },
         mounted() {

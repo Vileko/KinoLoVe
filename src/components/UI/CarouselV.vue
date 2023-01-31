@@ -59,7 +59,7 @@ export default defineComponent({
   },
   methods: {
     test(p){
-      console.log(p)
+     
     },
     updateWidth() {
       this.width = window.innerWidth;

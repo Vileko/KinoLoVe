@@ -15,6 +15,11 @@ import {mapMutations, mapState} from 'vuex';
                 page: 1,
                 button: [
                     {
+                        id: 0,
+                        genre: 'все',
+                        genre_engl: 'all',
+                    },
+                    {
                         id: 1, 
                         genre: 'драма',
                         genre_engl: 'drama', 
@@ -51,25 +56,23 @@ import {mapMutations, mapState} from 'vuex';
              ...mapMutations([
                 'POST_ADD_POST_PLAGINATE',
                 'POST_GENRE_FILMS',
-                'BTN_FILTER_ACTIVE'
             ]),
             sort(ar){
-                if(ar.genre === ar.genre){       
-                    this.POST_ADD_POST_PLAGINATE(ar.genre);
-                    this.POST_GENRE_FILMS(ar.genre_engl);
-                    this.$emit('pageNumber', this.page)  
-                    this.BTN_FILTER_ACTIVE(ar.genre_engl)
-                    console.log(ar.genre_engl)
-                }
+                this.$emit('pageNumber', this.page)  
+                this.$router.push(`${ar.genre_engl}`)
             },
         },
         computed: {
-            ...mapState(['btnActiveFilter', 'showBtnFilter'])
+            ...mapState(['showBtnFilter'])
         }
     }
 </script>
 
 <style  scoped>
+.all .all {
+    background-color: green;
+}
+
 .drama .drama {
     background-color: green;
 }

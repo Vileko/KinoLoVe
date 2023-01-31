@@ -7,61 +7,87 @@ export default createStore({
         filterPost: [],
         postPlaginate: [],
         mainArray: true,
-        pageNumber: 1,
         ganreFilter: '',
         btnActiveFilter: false,
-        genre: 'all',
+        genre: 'drama',
+
+        pageNumber: 1,
 
         checkbox: false, //фильтр по рейтингу
         showBtnFilter: '', //для активной кнопки фильтра
 
         homeNewFilms: [], //новые фильмы
-        homeTop10Films: [] //топ 10 фильмов
+        homeTop10Films: [], //топ 10 фильмов
+
+        test: ''
     },
     getters: {
+        SORT_TEST(state){
+            if(state.checkbox === true){
+                state.postPlaginate = state.postPlaginate.sort((a,b) => b.rating_kp - a.rating_kp);
+                return state.postPlaginate;
+            } else {
+                state.postPlaginate = state.postPlaginate.sort((a) => a);
+                return state.postPlaginate;
+            }
+        },
+        GENRE_FILTER_ARRAY(state){
+            return state.postPlaginate;
+        },
         //когда фильм вышел в прокате
         HOME_NEW_FILMS(state){ 
             state.homeNewFilms = state.homeNewFilms.sort((a,b) => {
                 return new Date(b.premiere_world) - new Date(a.premiere_world);
             }).slice(0,15)
-            return state.homeNewFilms
+            return state.homeNewFilms;
         },
         TEST_CHECKBOX(state){
             return state.checkbox;
         },
         HOME_TOP_10_FILMS(state){
             state.homeTop10Films = state.homeTop10Films.sort((a,b) => b.rating_kp - a.rating_kp).slice(0,15);
-            return state.homeTop10Films
+            return state.homeTop10Films;
         },
     },
     mutations: {
-        SORT_TEST(state, ar){
-            if(state.checkbox === true){
-                return ar.sort((a,b) => b.rating_kp - a.rating_kp)
-            } else {
-                ar.sort(sortRandon)
-                function sortRandon(){
-                    return Math.random() - 0.5
-                }
-                
-            }
-        },
         CHECKBOX(state, boolean){
-            return state.checkbox = boolean
+            return state.checkbox = boolean;
         },
         FILTER_POST(state, event){
             state.ganreFilter = event;
         },
-        POST_ADD_POST_PLAGINATE(state, p) {
-            state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == p))
+        POSTPLAGINATE_GENRE_URL(state, p) {
+            state.genre = p;
         },
-        POST_GENRE_FILMS(state, genre){
-            state.genre = genre;
+        POST_GENRE_FILMS(state){     
+           setTimeout(() => {
+                if(state.genre === 'all'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a));
+                } 
+                if(state.genre === 'drama'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'драма'));
+                } 
+                if(state.genre === 'adventure'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'приключения'));
+                }
+                if(state.genre === 'comedy'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'комедия'));
+                }
+                if(state.genre === 'action-movie'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'боевик'));
+                }
+                if(state.genre === 'thriller'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'триллер'));
+                }
+                if(state.genre === 'fantasy'){
+                    state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'фантастика'));
+                }
+           }, 500)
         },
         SET_POST(state, post){
             state.post = post;
             state.homeNewFilms = post;
-            state.homeTop10Films = post;
+            state.homeTop10Films = post; 
         },
         BTN_FILTER_ACTIVE(state, ar){
             state.showBtnFilter = ar;

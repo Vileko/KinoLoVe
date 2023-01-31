@@ -3,7 +3,7 @@
         <div class="poster_blocks">
             <div 
                 class="poster_block"
-                v-for="p in clickCallback.length > 0 ? clickCallback : ' ' " 
+                v-for="p in clickCallback" 
                 :key="p.id"
                 @click="$router.push(`/film/${p.id}`)"
             >
@@ -14,10 +14,10 @@
                 >
                 <h3 class="title_big_poster">{{p.name_russian}}</h3>
                 <div class="open_card">
-                        <i class="open_button_card"></i>
+                    <i class="open_button_card"></i>
                 </div>
                 <div class="rating-films poster_block__rating-films">
-                        {{p.rating_kp}} / 10
+                    {{p.rating_kp}} / 10
                 </div>
             </div>
         </div>

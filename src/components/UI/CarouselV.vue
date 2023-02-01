@@ -8,33 +8,28 @@
       style="width: 220px"
       @click="$router.push(`/film/${p.id}`)"
     >
-        <img 
-          class="img_big_poster"
-          :src="p.big_poster" 
-          alt=""
-        >
-        <h3 class="title_big_poster">{{p.name_russian}}</h3>
-        <div class="open_card">
-          <i class="open_button_card"></i>
-        </div>
-        <div class="rating-films poster_block__rating-films">
-          {{p.rating_kp}} / 10
-        </div>
-      
-   
+      <img 
+        class="img_big_poster"
+        :src="p.big_poster" 
+        alt=""
+      >
+      <h3 class="title_big_poster">{{p.name_russian}}</h3>
+      <div class="open_card">
+        <i class="open_button_card"></i>
+      </div>
+      <div class="rating-films poster_block__rating-films">
+        {{p.rating_kp}} / 10
+      </div>
     </Slide>
-
     <template #addons>
       <Navigation />
     </template>
-  </Carousel>>
-   </div>
+    </Carousel>>
+  </div>
 </template>
 
 <script>
-// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import 'vue3-carousel/dist/carousel.css'
-import MovieCard from '../movieMap/MovieCard.vue'
 
 import { defineComponent } from 'vue'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
@@ -58,9 +53,6 @@ export default defineComponent({
     
   },
   methods: {
-    test(p){
-     
-    },
     updateWidth() {
       this.width = window.innerWidth;
       if(this.width > 1145) {

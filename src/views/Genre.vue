@@ -35,15 +35,7 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
             return {
                 page: +this.$route.query.page || 1,
                 genre: [],
-                newLink: '',
-                oldLink: '',
                 pageSize: 8,
-            }
-        },
-        watch: {
-            $route (to) {
-              
-                //console.log(this.newLink, this.oldLink)
             }
         },
         methods: {
@@ -59,9 +51,7 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
             },
             genreUrl(genre_engl){
                 this.genre = genre_engl;
-                console.log(this.genre)
-            }
-            
+            },
         },
         computed: {
             ...mapState([
@@ -85,7 +75,6 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
                     const chunk =  this.SORT_TEST().slice(i, i + this.pageSize);
                     a.push(chunk)
                 }
-                
                 this.$router.push(`${this.genre}?page=${this.page}`);
                 return a[this.page - 1];
             },

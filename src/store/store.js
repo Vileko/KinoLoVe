@@ -6,20 +6,14 @@ export default createStore({
         post: [],
         filterPost: [],
         postPlaginate: [],
-        mainArray: true,
         ganreFilter: '',
-        btnActiveFilter: false,
         genre: 'drama',
-
-        pageNumber: 1,
 
         checkbox: false, //фильтр по рейтингу
         showBtnFilter: '', //для активной кнопки фильтра
 
         homeNewFilms: [], //новые фильмы
         homeTop10Films: [], //топ 10 фильмов
-
-        test: ''
     },
     getters: {
         SORT_TEST(state){
@@ -60,9 +54,10 @@ export default createStore({
             state.genre = p;
         },
         POST_GENRE_FILMS(state){     
-           setTimeout(() => {
+            setTimeout(() => {
                 if(state.genre === 'all'){
                     state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a));
+                    
                 } 
                 if(state.genre === 'drama'){
                     state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'драма'));

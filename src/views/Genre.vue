@@ -7,6 +7,7 @@
         <btn-filter
             class="btn-filter"
             @pageNumber='pageNumber'
+            @genreUrl='genreUrl'
         />
         <movie-card
             :clickCallback='clickCallback'
@@ -34,12 +35,15 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
             return {
                 page: +this.$route.query.page || 1,
                 genre: [],
+                newLink: '',
+                oldLink: '',
                 pageSize: 8,
             }
         },
         watch: {
             $route (to) {
-                this.genre.push(to.path.split('/')[2])
+              
+                //console.log(this.newLink, this.oldLink)
             }
         },
         methods: {
@@ -52,7 +56,12 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
             ]),
             pageNumber(ar){
                 this.page = ar;
+            },
+            genreUrl(genre_engl){
+                this.genre = genre_engl;
+                console.log(this.genre)
             }
+            
         },
         computed: {
             ...mapState([
@@ -76,7 +85,8 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
                     const chunk =  this.SORT_TEST().slice(i, i + this.pageSize);
                     a.push(chunk)
                 }
-                this.$router.push(`?page=${this.page}`);
+                
+                this.$router.push(`${this.genre}?page=${this.page}`);
                 return a[this.page - 1];
             },
             pageCount(){   
@@ -85,6 +95,9 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
         },
         mounted() {
             this.$store.dispatch('fetchApi');
+        },
+        created() {
+         
         },
     }
 </script>

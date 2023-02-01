@@ -7,12 +7,13 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex';
+import {mapState} from 'vuex';
 
     export default {
         data() {
             return {
                 page: 1,
+                genreUrl: '',
                 button: [
                     {
                         id: 0,
@@ -53,13 +54,9 @@ import {mapMutations, mapState} from 'vuex';
             }
         },
         methods: {
-             ...mapMutations([
-                'POST_ADD_POST_PLAGINATE',
-                'POST_GENRE_FILMS',
-            ]),
             sort(ar){
-                this.$emit('pageNumber', this.page)  
-                this.$router.push(`${ar.genre_engl}`)
+                this.$emit('pageNumber', this.page);
+                this.$emit('genreUrl', ar.genre_engl)
             },
         },
         computed: {

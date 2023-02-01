@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from '../views/Home.vue'
 import Genre from '../views/Genre.vue'
 import CardFilm from '../components/movieMap/CardFilm.vue'
-import GenreFilms from '../components/genre/GenreFilms.vue'
 
 export default createRouter({
     history: createWebHistory(),

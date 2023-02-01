@@ -48,7 +48,9 @@
                 </span>
                 <div>
                     <dialog-v v-model:show='dialogVisible'>
-                        <form-film-trailer/>
+                        <form-film-trailer
+                            :films='films'
+                        />
                     </dialog-v>
                     <div class="btn_trailer" @click='dialogVisible = true'>Трейлер</div>
                 </div>
@@ -62,29 +64,28 @@ import {mapState} from 'vuex'
 import MovieCard from '../movieMap/MovieCard.vue'
 import DialogV from '../UI/DialogV.vue'
 import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
-
     export default {
     components: { MovieCard, DialogV, FormFilmTrailer },
-            data() {
-                return {
-                    dialogVisible: false,
-                }
-            },
-           mounted () {
-                this.$store.dispatch('fetchApi')
-            },
-            computed:{
-                ...mapState(['post']),
-                films(){
-                    let result = [];
-                    this.post.map(item => {
-                        if(item.id == this.$route.params.id){
-                            result = item;
-                        }
-                    })
-                    return result;
-                }
-            },
+        data() {
+            return {
+                dialogVisible: false,
+            }
+        },
+        mounted () {
+            this.$store.dispatch('fetchApi')
+        },
+        computed:{
+            ...mapState(['post']),
+            films(){
+                let result = [];
+                this.post.map(item => {
+                    if(item.id == this.$route.params.id){
+                        result = item;
+                    }
+                })
+                return result;
+            }
+        },
     }
 </script>
 

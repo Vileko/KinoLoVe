@@ -82,7 +82,7 @@ export default createStore({
                 if(state.genre === 'fantasy'){
                     state.postPlaginate = state.post.filter(ar => ar.genres.some(a => a.name_ru == 'фантастика'));
                 }
-           }, 500)
+           }, 1000)
         },
         SET_POST(state, post){
             state.post = post;

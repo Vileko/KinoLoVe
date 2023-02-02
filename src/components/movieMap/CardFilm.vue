@@ -90,8 +90,6 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
 </script>
 
 <style scoped>
-
-
 .card-inf__block {
     display: flex;
     align-items: center;

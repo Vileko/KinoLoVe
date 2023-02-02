@@ -14,6 +14,8 @@ export default createStore({
 
         homeNewFilms: [], //новые фильмы
         homeTop10Films: [], //топ 10 фильмов
+
+        postFavorites: [],  //избранное 
     },
     getters: {
         SORT_TEST(state){
@@ -44,6 +46,20 @@ export default createStore({
         },
     },
     mutations: {
+        REMOVE_POST_FAVORITES(state, postFilm){
+            state.postFavorites =  state.postFavorites.filter(ar => ar.id !== postFilm.id)
+        },
+        POST_ADD_TO_FAVORITES(state, favorites){
+            const itemIndex = state.postFavorites.findIndex(value => value.id === favorites.id);
+            if(itemIndex < 0){
+                state.postFavorites.push(favorites);
+                for(let i = 0; i <  state.postFavorites.length; i++){
+                    if(favorites.id ===  state.postFavorites[i].id){
+                        state.postFavorites[i].active = true;
+                    }
+                }
+            }
+        },
         CHECKBOX(state, boolean){
             return state.checkbox = boolean;
         },
@@ -80,6 +96,8 @@ export default createStore({
            }, 1000)
         },
         SET_POST(state, post){
+            //post.map(ar => ar.active = false)
+
             state.post = post;
             state.homeNewFilms = post;
             state.homeTop10Films = post; 

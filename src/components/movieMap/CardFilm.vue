@@ -1,6 +1,11 @@
 <template>
     <div class="container">
-        <h1>{{films.name_russian}}</h1>
+        <div class="movie-title">
+            <h1>{{films.name_russian}}</h1>
+            <div class="movie-title__wrapper" @click="addToFavorites(films)">
+                <div class="heart" :class="[activeClassTEST() === true ? 'active' : 'heart']"></div>
+            </div>
+        </div>
         <div class="card-film"> 
             <img 
                 :src="films.big_poster" 
@@ -60,7 +65,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 import MovieCard from '../movieMap/MovieCard.vue'
 import DialogV from '../UI/DialogV.vue'
 import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
@@ -69,13 +74,39 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
         data() {
             return {
                 dialogVisible: false,
+                numerLikes: 0,
             }
         },
         mounted () {
             this.$store.dispatch('fetchApi')
         },
+        methods: {
+            ...mapMutations([
+                'POST_ADD_TO_FAVORITES',
+                'REMOVE_POST_FAVORITES'
+            ]),
+            addToFavorites(film){
+                if(this.numerLikes === 0){
+                    this.POST_ADD_TO_FAVORITES(film);  
+                } else {
+                    this.numerLikes = 0;
+                    this.REMOVE_POST_FAVORITES(film)
+                }
+            },
+            activeClassTEST(){
+                for(let i = 0; i < this.postFavorites.length; i++){
+                    if(this.films.id === this.postFavorites[i].id){
+                        this.numerLikes = 1;
+                        return this.postFavorites[i].active;
+                    }
+                }
+            }
+        },
         computed:{
-            ...mapState(['post']),
+            ...mapState([
+                'post',
+                'postFavorites'
+            ]),
             films(){
                 let result = [];
                 this.post.map(item => {
@@ -90,6 +121,63 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
 </script>
 
 <style scoped>
+
+.movie-title {
+    position: relative;
+    display: flex;
+}
+.movie-title__wrapper {
+    position: absolute;
+    right: 25px;
+}
+
+.heart:hover {
+    box-shadow: 0px 0px 70px 15px rgb(187, 53, 53);
+}
+
+.heart {
+    width: 30px;
+    height: 30px; 
+    background-color: rgb(187, 187, 187);
+    transform: rotate(45deg);
+    position: relative;
+    cursor: pointer;
+    transition: .5s;
+}
+.heart::before,
+.heart::after {
+    content : ''; 
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(187, 187, 187);
+    border-radius: 50%; 
+    position: absolute;
+    transition: .5s;
+}
+.heart::before {
+    top: -15px;
+    left: 0;
+}
+.heart::after {
+    top: 0;
+    left: -15px;
+}
+
+.active {
+    background-color: rgb(187, 53, 53);
+}
+.active::before,
+.active::after {
+    content : ''; 
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(187, 53, 53);
+    border-radius: 50%; 
+    position: absolute;
+}
+
 .card-inf__block {
     display: flex;
     align-items: center;

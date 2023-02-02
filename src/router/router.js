@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from '../views/Home.vue'
 import Genre from '../views/Genre.vue'
 import CardFilm from '../components/movieMap/CardFilm.vue'
+import Favorites from '../views/Favorites.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -49,6 +50,10 @@ export default createRouter({
         {
             path: '/film/:id',
             component: CardFilm
+        },
+        {
+            path: '/Favorites',
+            component: Favorites
         },
     ]
 })

@@ -8,7 +8,7 @@
         <nav class="menu">
           <router-link class="router menu__router" to="/">Главная</router-link>
           <router-link class="router menu__router" to="/genre/all">Жанры</router-link>
-          <router-link class="router menu__router" to="/">Избранные</router-link>
+          <router-link class="router menu__router" to="/favorites">Избранные</router-link>
         </nav>
         <div class="test__class">
           <input type="text" placeholder="Поиск">

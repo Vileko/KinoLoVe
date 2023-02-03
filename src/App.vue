@@ -20,14 +20,15 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
   export default {
     watch: {
     '$route' (to) {
       this.POSTPLAGINATE_GENRE_URL(to.path.split('/')[2]);
       this.BTN_FILTER_ACTIVE(to.path.split('/')[2])
-    }
+    },
+    
   },
     methods: {
       ...mapMutations([
@@ -35,6 +36,9 @@ import {mapMutations} from 'vuex'
         'BTN_FILTER_ACTIVE'
       ]),
     },
+    beforeMount() {
+      this.$store.commit('initialiseStore')
+    },  
   }
 </script>
 

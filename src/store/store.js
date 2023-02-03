@@ -46,6 +46,13 @@ export default createStore({
         },
     },
     mutations: {
+        initialiseStore(state) {
+			if(localStorage.getItem('store')) {
+                this.replaceState(
+					Object.assign(state, JSON.parse(localStorage.getItem('store')))
+				);
+			}
+		},
         REMOVE_POST_FAVORITES(state, postFilm){
             state.postFavorites =  state.postFavorites.filter(ar => ar.id !== postFilm.id)
         },

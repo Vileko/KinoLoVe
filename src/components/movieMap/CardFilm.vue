@@ -100,7 +100,7 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
                         return this.postFavorites[i].active;
                     }
                 }
-            }
+            },
         },
         computed:{
             ...mapState([

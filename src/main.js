@@ -9,6 +9,10 @@ import './style/style.css'
 import './style/mediaCarouselV.css'
 import './style/mediaNavBar.css'
 
+store.subscribe((mutation, state) => {
+	localStorage.setItem('store', JSON.stringify(state));
+});
+
 createApp(App)
     .component('Paginate', Paginate)
     .use(store)

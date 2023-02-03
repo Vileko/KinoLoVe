@@ -241,6 +241,9 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
        margin-left: 0px;
        margin-top: 15px;
     }
+    .img-card {
+        width: 250px;
+    }
 }
 
 

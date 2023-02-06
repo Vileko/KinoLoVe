@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapGetters} from 'vuex';
+import {mapState, mapMutations, mapGetters, mapActions} from 'vuex';
 import MovieCard from '../components/movieMap/MovieCard.vue';
 import BtnFilter from '../components/UI/BtnFilter.vue';
     export default {
@@ -40,11 +40,13 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
         },
         methods: {
             ...mapMutations([
-                'POST_GENRE_FILMS',
                 'CHECKBOX',
             ]),
             ...mapGetters([
-                'SORT_TEST'
+                'POSTPLAGINATE_SORT'
+            ]),
+            ...mapActions([
+                'POST_GENRE_FILMS'
             ]),
             pageNumber(ar){
                 this.page = ar;
@@ -55,11 +57,8 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
         },
         computed: {
             ...mapState([
-                'post',
-                'postPlaginate',
                 'checkbox',
             ]),
-            
             messege:{
                 get(){
                     return this.checkbox
@@ -71,23 +70,21 @@ import BtnFilter from '../components/UI/BtnFilter.vue';
             clickCallback(){  
                 let a = []
                 this.POST_GENRE_FILMS()
-                for(let i = 0; i <  this.SORT_TEST().length; i += this.pageSize) {
-                    const chunk =  this.SORT_TEST().slice(i, i + this.pageSize);
+                for(let i = 0; i <  this.POSTPLAGINATE_SORT().length; i += this.pageSize) {
+                    const chunk =  this.POSTPLAGINATE_SORT().slice(i, i + this.pageSize);
                     a.push(chunk)
                 }
                 this.$router.push(`${this.genre}?page=${this.page}`);
                 return a[this.page - 1];
             },
             pageCount(){   
-                return Math.ceil(this.postPlaginate.length / this.pageSize);
+                return Math.ceil(this.POSTPLAGINATE_SORT().length / this.pageSize);
             }
         },
         mounted() {
             this.$store.dispatch('fetchApi');
         },
-        created() {
-         
-        },
+        
     }
 </script>
 

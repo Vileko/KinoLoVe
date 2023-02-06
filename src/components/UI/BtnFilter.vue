@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapMutations, mapState} from 'vuex';
 
     export default {
         data() {
@@ -54,14 +54,22 @@ import {mapState} from 'vuex';
             }
         },
         methods: {
+            ...mapMutations([
+                'GENRE_RU',
+                
+            ]),
             sort(ar){
+                this.GENRE_RU(ar.genre)
                 this.$emit('pageNumber', this.page);
                 this.$emit('genreUrl', ar.genre_engl)
             },
         },
         computed: {
             ...mapState(['showBtnFilter'])
-        }
+        },
+        created() {
+            
+        },
     }
 </script>
 

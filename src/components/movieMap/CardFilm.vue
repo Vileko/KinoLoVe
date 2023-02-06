@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex'
+import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
 import MovieCard from '../movieMap/MovieCard.vue'
 import DialogV from '../UI/DialogV.vue'
 import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'

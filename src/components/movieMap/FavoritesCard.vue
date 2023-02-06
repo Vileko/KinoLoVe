@@ -3,7 +3,7 @@
         <div class="poster_blocks">
             <div 
                 class="films poster_blocks__films"
-                v-for="post in postFilim" 
+                v-for="post in postFavorites" 
                 :key="post.id"
             >        
                 <div  
@@ -23,7 +23,7 @@
                         {{post.rating_kp}} / 10
                     </div>
                 </div>
-                <div class="remove_film" @click="$emit('removeFilms', post)">
+                <div class="remove_film" @click="REMOVE_POST_FAVORITES(post)">
                     УДАЛИТЬ
                 </div>
             </div>
@@ -32,11 +32,17 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from 'vuex'
     export default {
-        props: {
-            postFilim: {
-                type: Array,
-            }
+        computed: {
+            ...mapState([
+                'postFavorites'
+            ]),
+        },
+        methods:{
+            ...mapMutations([
+                'REMOVE_POST_FAVORITES'
+            ]),
         },
     }
 </script>

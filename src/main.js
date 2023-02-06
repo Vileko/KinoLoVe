@@ -10,7 +10,7 @@ import './style/mediaCarouselV.css'
 import './style/mediaNavBar.css'
 
 store.subscribe((mutation, state) => {
-	localStorage.setItem('store', JSON.stringify(state));
+	localStorage.setItem(('store'), JSON.stringify(state));
 });
 
 createApp(App)

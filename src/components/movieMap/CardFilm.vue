@@ -65,12 +65,13 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
-import MovieCard from '../movieMap/MovieCard.vue'
+
+import {mapMutations, mapState} from 'vuex'
+import CardDescription from './CardDescription.vue'
 import DialogV from '../UI/DialogV.vue'
 import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     export default {
-    components: { MovieCard, DialogV, FormFilmTrailer },
+    components: { CardDescription, DialogV, FormFilmTrailer },
         data() {
             return {
                 dialogVisible: false,
@@ -120,8 +121,7 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 .movie-title {
     position: relative;
     display: flex;

@@ -10,11 +10,10 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
-import MovieCard from '../movieMap/MovieCard.vue'
+import {mapGetters} from 'vuex';
 import CarouselV from '../UI/CarouselV.vue';
     export default {
-  components: { MovieCard, CarouselV },
+  components: {  CarouselV },
          computed: {
             ...mapGetters([
                 'HOME_TOP_10_FILMS'

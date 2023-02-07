@@ -1,14 +1,12 @@
 <template>
     <div class="container">
-        <favorites-card/>
+        <card-favorites/>
     </div>
 </template>
 
 <script>
-import FavoritesCard from '../components/movieMap/FavoritesCard.vue';
-import MovieCard from '../components/movieMap/MovieCard.vue';
+import CardFavorites from '../components/Favorites/CardFavorites.vue';
+import CardDescription from '../components/movieMap/CardDescription.vue';
     export default {
-    components: {FavoritesCard, MovieCard},
-
-    }
+    components: {CardFavorites, CardDescription}}
 </script>

@@ -9,7 +9,7 @@
             @pageNumber='pageNumber'
             @genreUrl='genreUrl'
         />
-        <movie-card
+        <card-description
             :clickCallback='clickCallback'
         />
         <paginate
@@ -27,10 +27,10 @@
 
 <script>
 import {mapState, mapMutations, mapGetters, mapActions} from 'vuex';
-import MovieCard from '../components/movieMap/MovieCard.vue';
+import CardDescription from '../components/movieMap/CardDescription.vue';
 import BtnFilter from '../components/UI/BtnFilter.vue';
     export default {
-  components: { MovieCard, BtnFilter },
+  components: { CardDescription, BtnFilter },
         data(){
             return {
                 page: +this.$route.query.page || 1,

@@ -27,7 +27,7 @@
 
 <script>
 import {mapState, mapMutations, mapGetters, mapActions} from 'vuex';
-import CardDescription from '../components/movieMap/CardDescription.vue';
+import CardDescription from '../components/Genre/CardDescription.vue';
 import BtnFilter from '../components/UI/BtnFilter.vue';
     export default {
   components: { CardDescription, BtnFilter },

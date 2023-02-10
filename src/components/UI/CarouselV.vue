@@ -2,22 +2,22 @@
    <div>
      <Carousel :items-to-show="countSlider">
      <Slide  
-      class="poster_block" 
+      class="carousels" 
       v-for="p in clickCallback.length> 0 ? clickCallback : ' '" 
       :key="p.id" 
       style="width: 220px"
       @click="$router.push(`/film/${p.id}`)"
     >
       <img 
-        class="img_big_poster"
+        class="carousels__img"
         :src="p.big_poster" 
         alt=""
       >
-      <h3 class="title_big_poster">{{p.name_russian}}</h3>
-      <div class="open_card">
-        <i class="open_button_card"></i>
+      <h3 class="carousels__title">{{p.name_russian}}</h3>
+      <div class="carousels__open-card">
+        <i class="carousels__btn"></i>
       </div>
-      <div class="rating-films poster_block__rating-films">
+      <div class="carousels__rating">
         {{p.rating_kp}} / 10
       </div>
     </Slide>
@@ -96,19 +96,12 @@ export default defineComponent({
 }
 
 
-.img_big_poster {
+.carousels__img {
   min-width: 196px;
   height: 294px;
 }
 
-
-.poster_blocks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-.poster_block {
+.carousels {
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -122,11 +115,11 @@ export default defineComponent({
     transition: .4s;
 }
 
-.poster_block:hover {
+.carousels:hover {
     box-shadow: 0px 0px 50px rgba(196, 28, 28, 0.5);
 }
 
-.poster_block::before{
+.carousels::before{
     position: absolute;
     content: '';
     top: 0;
@@ -136,7 +129,7 @@ export default defineComponent({
     background: linear-gradient(to bottom, transparent, rgb(0, 0, 0, .75));
 }
 
-.img_big_poster {
+.carousels__img {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -144,7 +137,7 @@ export default defineComponent({
     border-radius: 5.3px;
 }
 
-.poster_block:hover .open_card {
+.carousels:hover .carousels__open-card {
     position: absolute;
     align-items: center;
     justify-content: center;
@@ -157,7 +150,7 @@ export default defineComponent({
     
 }
 
-.poster_block:hover .open_button_card {
+.carousels:hover .carousels__btn {
     border: solid rgb(255, 0, 0);
     border-width: 0 7px 7px 0;
     display: inline-block;
@@ -170,27 +163,24 @@ i {
 }
 
 @media screen and (max-width: 1100px) {
-    .poster_block:hover .open_card {
+    .carousels:hover .carousels__open-card {
         display: none;
     }
 }
 
-.title_big_poster {
+.carousels__title {
     padding: 0 15px 15px 10px;
     margin: 0;
     color: #fff;
     z-index: 100;
 }
 
-.rating-films {
+.carousels__rating {
     color: rgb(253, 253, 253);
     background-color: rgb(187, 53, 53);
     border-bottom-right-radius: 5px;
     padding: 5px;
     font-size: 12px;
-}
-
-.poster_block__rating-films {
     position: absolute;
     top: 0;
     left: 0;

@@ -1,27 +1,24 @@
 <template>
-    <div class="block">
-        <div class="poster_blocks">
-            <div 
-                class="poster_block"
-                v-for="p in clickCallback" 
-                :key="p.id"
-                @click="$router.push(`/film/${p.id}`)"
+    <div class="genre">
+        <div 
+            class="genre__poster"
+            v-for="p in clickCallback" 
+            :key="p.id"
+            @click="$router.push(`/film/${p.id}`)"
+        >
+            <img 
+                class="genre__img"
+                :src="p.big_poster" 
+                alt=""
             >
-                <img 
-                    class="img_big_poster"
-                    :src="p.big_poster" 
-                    alt=""
-                >
-                <h3 class="title_big_poster">{{p.name_russian}}</h3>
-                <div class="open_card">
-                    <i class="open_button_card"></i>
-                </div>
-                <div class="rating-films poster_block__rating-films">
-                    {{p.rating_kp}} / 10
-                </div>
+            <h3 class="genre__title">{{p.name_russian}}</h3>
+            <div class="genre__open-card">
+                <i class="genre__btn"></i>
+            </div>
+            <div class="genre__rating-films">
+                {{p.rating_kp}} / 10
             </div>
         </div>
-    
     </div>
 </template>
 
@@ -36,13 +33,13 @@
 </script>
 
 <style scoped>
-.poster_blocks {
+.genre {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.poster_block {
+.genre__poster {
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -56,11 +53,11 @@
     transition: .4s;
 }
 
-.poster_block:hover {
+.genre__poster:hover {
     box-shadow: 0px 0px 50px rgba(196, 28, 28, 0.5);
 }
 
-.poster_block::before{
+.genre__poster::before{
     position: absolute;
     content: '';
     top: 0;
@@ -70,15 +67,7 @@
     background: linear-gradient(to bottom, transparent, rgb(0, 0, 0, .75));
 }
 
-.img_big_poster {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    border-radius: 5.3px;
-}
-
-.poster_block:hover .open_card {
+.genre__poster:hover .genre__open-card{
     position: absolute;
     align-items: center;
     justify-content: center;
@@ -91,11 +80,25 @@
     
 }
 
-.poster_block:hover .open_button_card {
+.genre__poster:hover .genre__btn {
     border: solid rgb(255, 0, 0);
     border-width: 0 7px 7px 0;
     display: inline-block;
     padding: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+    .genre__poster:hover .genre__open-card {
+        display: none;
+    }
+}
+
+.genre__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 5.3px;
 }
 
 i {
@@ -103,13 +106,9 @@ i {
     -webkit-transform: rotate(-45deg);
 }
 
-@media screen and (max-width: 1100px) {
-    .poster_block:hover .open_card {
-        display: none;
-    }
-}
 
-.title_big_poster {
+
+.genre__title {
     padding: 0 15px 15px 10px;
     z-index: 100;
     margin: 0;
@@ -117,16 +116,14 @@ i {
     z-index: 100;
 }
 
-.rating-films {
+.genre__rating-films {
     color: rgb(253, 253, 253);
     background-color: rgb(187, 53, 53);
     border-bottom-right-radius: 5px;
     padding: 5px;
     font-size: 12px;
-}
-
-.poster_block__rating-films {
     position: absolute;
     top: 0px;
 }
+
 </style>

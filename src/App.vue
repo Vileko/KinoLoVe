@@ -38,7 +38,7 @@ import {mapMutations} from 'vuex'
     },
     beforeMount() {
       this.$store.commit('initialiseStore')
-    },  
+    },
   }
 </script>
 

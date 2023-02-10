@@ -19,10 +19,5 @@ import CarouselV from '../UI/CarouselV.vue';
                 'HOME_TOP_10_FILMS'
             ])
         },
-        
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

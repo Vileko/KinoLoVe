@@ -9,10 +9,9 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import CardHomeFilms from '../../components/Home/CardHomeFilms.vue'
 import CarouselV from '../UI/CarouselV.vue';
     export default {
-  components: { CardHomeFilms, CarouselV },
+  components: { CarouselV },
         computed: {
             ...mapGetters([
                 'HOME_NEW_FILMS'
@@ -23,6 +22,3 @@ import CarouselV from '../UI/CarouselV.vue';
         },
     }
 </script>
-
-<style scoped>
-</style>

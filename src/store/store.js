@@ -42,7 +42,6 @@ export default createStore({
 				);
 			}      
 		},
-        
         SET_POST(state, post){
             state.post = post;
             state.homeNewFilms = post;

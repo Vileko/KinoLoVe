@@ -10,40 +10,40 @@
             <img 
                 :src="films.big_poster" 
                 alt="img"
-                class="img-card"
+                class="card-film__img-card"
             >
-            <div class="card-film-information">
-                <div class="card-inf card-film__card-inf">
-                    <div class="block card-inf__block">
-                        <span class="span_inf">Навазвание:</span> 
-                        <p class="p_inf">{{films.name_russian}}</p>
+            <div class="card-film__information">
+                <div class="card-film__card-inf">
+                    <div class="card-film__block">
+                        <span class="card-film__span">Навазвание:</span> 
+                        <p class="card-film__p">{{films.name_russian}}</p>
                     </div>
-                    <div class="block card-inf__block">
-                        <span class="span_inf">Жанр: </span> 
+                    <div class="card-film__block">
+                        <span class="card-film__span">Жанр: </span> 
                         <p 
-                            class="p_inf"
+                            class="card-film__p"
                             v-for="p in films.genres" 
                             :key="p.id"
                         >
                         {{p.name_ru}}
                         </p>
                     </div>
-                    <div class="block card-inf__block">
-                        <span class="span_inf">Страна:</span> 
+                    <div class="card-film__block">
+                        <span class="card-film__span">Страна:</span> 
                         <p 
                             v-for="p in films.countries"
                             :key="p.id"
-                            class="p_inf"
+                            class="card-film__p"
                         >   
                             {{p.name_ru}}
                         </p>
                     </div>
-                     <div class="block card-inf__block">
-                        <span class="span_inf">Рейтинг: </span> 
-                        <p class="p_inf">
+                     <div class="card-film__block">
+                        <span class="card-film__span">Рейтинг: </span> 
+                        <p class="card-film__p">
                             Кино Поиск: {{films.rating_kp}}
                         </p>
-                        <p  class="p_inf">
+                        <p  class="card-film__p">
                             IMDb: {{films.rating_imdb}}
                         </p>
                     </div>
@@ -67,7 +67,7 @@
 <script>
 
 import {mapMutations, mapState} from 'vuex'
-import CardDescription from './CardDescription.vue'
+import CardDescription from '../Home/CardHomeFilms.vue'
 import DialogV from '../UI/DialogV.vue'
 import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     export default {
@@ -178,11 +178,11 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     position: absolute;
 }
 
-.card-inf__block {
+.card-film__block{
     display: flex;
     align-items: center;
 }
-.img-card {
+.card-film__img-card {
     width: 350px;
 }
 
@@ -190,8 +190,7 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     display: flex;
 }
 
-
-.span_inf {
+.card-film__span{
     width: 130px;
     font-size: 14px;
     color: rgb(182, 182, 182);
@@ -201,7 +200,7 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     flex-direction: column;
 }
 
-.p_inf {
+.card-film__p {
     color: rgb(223, 223, 223);
     font-size: 16px;
     margin-left: 5px;
@@ -211,7 +210,7 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     margin-bottom: 5px;
 }
 
-.card-film-information {
+.card-film__information {
     display: flex;
     flex-direction: column;
     margin-left: 25px;
@@ -237,11 +236,11 @@ import FormFilmTrailer from '../../components/movieMap/DialogTreiler.vue'
     .card-film {
         flex-direction: column;
     }
-    .card-film-information {
+    .card-film__information {
        margin-left: 0px;
        margin-top: 15px;
     }
-    .img-card {
+    .card-film__img-card {
         width: 250px;
     }
 }

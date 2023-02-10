@@ -1,29 +1,29 @@
 <template>
-    <div class="block">
-        <div class="poster_blocks">
+    <div class="favorites">
+        <div class="favorites__blocks">
             <div 
-                class="films poster_blocks__films"
+                class="favorite__films"
                 v-for="post in postFavorites" 
                 :key="post.id"
             >        
                 <div  
                     @click="$router.push(`/film/${post.id}`)"
-                    class="poster_block"
+                    class="favorite__block"
                 >
                     <img 
-                        class="img_big_poster"
+                        class="favorite__img-poster"
                         :src="post.big_poster" 
                         alt=""
                     >
-                    <h3 class="title_big_poster">{{post.name_russian}}</h3>
-                    <div class="open_card">
-                        <i class="open_button_card"></i>
+                    <h3 class="favorite__title">{{post.name_russian}}</h3>
+                    <div class="favorite__open-card">
+                        <i class="favorite__button-card"></i>
                     </div>
                     <div class="rating-films poster_block__rating-films">
                         {{post.rating_kp}} / 10
                     </div>
                 </div>
-                <div class="remove_film" @click="REMOVE_POST_FAVORITES(post)">
+                <div class="favorite__remove-film" @click="REMOVE_POST_FAVORITES(post)">
                     УДАЛИТЬ
                 </div>
             </div>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
     export default {
         computed: {
             ...mapState([
@@ -48,7 +48,14 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 </script>
 
 <style scoped>
-.poster_blocks__films {
+.favorites__blocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    z-index: -1;
+}
+
+.favorite__films {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +63,41 @@ import { mapState, mapActions, mapMutations } from 'vuex'
     margin: 15px;
 }
 
-.remove_film {
+.favorite__block {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: 220px;
+    height: 293px;
+    z-index: 100;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: .4s;
+    margin: 0 0 10px;
+}
+
+.favorite__block:hover .favorite__open-card {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, .7);
+    transition: .4s;
+    backdrop-filter: blur(4px);
+    
+}
+
+.favorite__block:hover .favorite__button-card {
+    border: solid rgb(255, 0, 0);
+    border-width: 0 7px 7px 0;
+    display: inline-block;
+    padding: 20px;
+}
+
+.favorite__remove-film{
     top: 0;
     right: 0;
     z-index: 100;
@@ -71,36 +112,15 @@ import { mapState, mapActions, mapMutations } from 'vuex'
     border-radius: 5px;
 }
 
-.remove_film:hover {
+.favorite__remove-film:hover {
     background-color: rgb(117, 47, 47);
 }
 
-.poster_blocks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    z-index: -1;
-}
-
-.poster_block {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    width: 220px;
-    height: 293px;
-    z-index: 100;
-    cursor: pointer;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: .4s;
-    margin: 0 0 10px;
-}
-
-.poster_block:hover {
+.favorite__block:hover {
     box-shadow: 0px 0px 50px rgba(196, 28, 28, 0.5);
 }
 
-.poster_block::before{
+.favorite__block::before{
     position: absolute;
     content: '';
     top: 0;
@@ -110,7 +130,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
     background: linear-gradient(to bottom, transparent, rgb(0, 0, 0, .75));
 }
 
-.img_big_poster {
+.favorite__img-poster {
     position: absolute;
     width: 100%;
     height: 294px;
@@ -118,25 +138,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
     border-radius: 5.3px;
 }
 
-.poster_block:hover .open_card {
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: rgb(0, 0, 0, .7);
-    transition: .4s;
-    backdrop-filter: blur(4px);
-    
-}
 
-.poster_block:hover .open_button_card {
-    border: solid rgb(255, 0, 0);
-    border-width: 0 7px 7px 0;
-    display: inline-block;
-    padding: 20px;
-}
 
 i {
     transform: rotate(-45deg);
@@ -144,12 +146,12 @@ i {
 }
 
 @media screen and (max-width: 1100px) {
-    .poster_block:hover .open_card {
+    .poster_block:hover .favorite__open-card {
         display: none;
     }
 }
 
-.title_big_poster {
+.favorite__title {
     padding: 0 15px 15px 10px;
     z-index: 100;
     margin: 0;

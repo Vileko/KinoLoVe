@@ -75,35 +75,35 @@ import {mapMutations, mapState} from 'vuex';
 
 <style  scoped>
 .all .all {
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 .drama .drama {
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 .adventure .adventure {
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 .comedy .comedy {
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 .action-movie .action-movie {
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 .thriller .thriller{
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 .fantasy .fantasy {
-    background-color: green;
+    background-color: rgb(187, 53, 53);
 }
 
 button {
-    background-color: rgb(187, 53, 53);
+    background-color: rgb(94, 91, 91);
     color: #fff;
     padding: 5px;
     border-radius: 5px;

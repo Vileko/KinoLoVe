@@ -43,6 +43,7 @@ import {mapMutations} from 'vuex'
 </script>
 
 <style scoped>
+
 .dropbtn {
   background-color: #4CAF50;
   color: white;
@@ -120,17 +121,22 @@ input {
   color: #fff;
 }
 
-.menu a {
-  color: rgb(182, 182, 182);
-  
+.router {
+  color: #c4c4c4;
   text-decoration: none;
 }
 
+.router-link-exact-active {
+  color: rgb(240, 98, 98)
+}
+  
 .menu a:hover {
-  color: rgb(238, 238, 238);
+  color: rgb(240, 98, 98)
 }
 
 .menu__router:not(:nth-child(1)){
   margin-left: 20px;
 }
+
+
 </style>
